@@ -3,52 +3,50 @@ package org.example;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class HttpConnectionExample {
 
     private static final String USER_AGENT = "Mozilla/5.0";
+    private static final String GET_URL = "http://logger-service1:4568/logString?value=hola";
 
-    private static final String[] SERVERS = new String[]{"http://localhost:4568", "http://localhost:4569", "http://localhost:4570"};
+    public String logString(String url, String value) throws IOException {
 
-    private static int curretServer = 0;
-
-    public static String logMessage(String msg) throws IOException {
-        int server = curretServer;
-        curretServer = (curretServer + 1) % 3;
-        return getUrlResponse(SERVERS[server] + "/log?message=" + msg);
-    }
-
-    public static String getUrlResponse(String url) throws IOException {
-
-        URL obj = new URL(url);
+        URL obj = new URL(url+value);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("User-Agent", USER_AGENT);
 
         int responseCode = con.getResponseCode();
-        System.out.println("GET Response Code :: " + responseCode);
 
-        StringBuffer response = new StringBuffer();
+        System.out.println("URL: " + url);
+
+        System.out.println("GET Response Code :: " + responseCode);
 
         if (responseCode == HttpURLConnection.HTTP_OK) { // success
             BufferedReader in = new BufferedReader(new InputStreamReader(
                     con.getInputStream()));
             String inputLine;
+            StringBuffer response = new StringBuffer();
 
             while ((inputLine = in.readLine()) != null) {
                 response.append(inputLine);
             }
             in.close();
 
-            // print result
-            System.out.println(response.toString());
+            System.out.println("THE RESPONSE IS: " + response.toString());
+
+            return response.toString();
         } else {
             System.out.println("GET request not worked");
         }
         System.out.println("GET DONE");
-        return url;
+
+        System.out.println("IM RETURNING NULL");
+
+        return null;
     }
 
 }
