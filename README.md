@@ -22,10 +22,14 @@ En este taller se aprenderá a crear instancias EC2 en AWS, crear imágenes comp
 
 ### Instalación
 
-1. Clonar el repositorio
+1. Clonar los dos repositorios:
 
 ```
-https://github.com/jloading/Taller4AREP
+https://github.com/jloading/Taller6AREP-App.git
+```
+
+```
+https://github.com/jloading/Taller6AREP-Service.git
 ```
 
 2. Se construye el proyecto con Maven
@@ -36,46 +40,34 @@ mvn package
 
 ### Corriendo la aplicación
 
-### * Usando Java:
-
-Se corren los comandos
-```
-mvn clean package install
-mvn clean install
-```
-
-Se corre el servidor con el comando
-#### Para Mac:
-```
-java -cp "target/classes:target/dependency/*" org.example.SparkWebServer
-```
-
-#### Para Windows:
-```
-java -cp "target\classes:target\dependency\*" org.example.SparkWebServer
-
-```
-
-Para finalizar, se accede a la siguiente dirección desde el navegador
-
-```
-http://localhost:4567/operaciones
-```
-
 ### * Usando Docker:
-Ingrese el comando en su terminal
+Ingrese los siguientes comandos en su terminal (en el orden que se muestran)
 
 ```
-docker run -d -p 34000:6000 --name taller5arep jloading9/taller5arep
+docker network create my_network
 ```
 
-<img width="624" alt="Captura de pantalla 2023-09-27 a la(s) 10 09 48 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/aaa07c78-3710-4624-aa5f-fab1593fe276">
-
-Posteriormente ingrese a la siguiente dirección
+```
+docker run -d -p 36000:4567 --name logger-app --network my_network jloading9/taller6arep-app
+```
 
 ```
-http://localhost:34000/operaciones
+docker run -d -p 36001:4568 --name logger-service1 --network my_network jloading9/taller6-service
 ```
+
+```
+docker run -d -p 36002:4568 --name logger-service2 --network my_network jloading9/taller6-service
+```
+
+```
+docker run -d -p 36003:4568 --name logger-service3 --network my_network jloading9/taller6-service
+```
+
+```
+docker run -d -p 27017:27017 -v mongodb:/data/db -v mongodb_config:/data/configdb --name db --network my_network mongo:7.0.2 mongod
+```
+
+
 ## Corriendo las pruebas
 
 Al ingresar a la dirección http://localhost:4567/operaciones (si lo corrió con Java) o http://localhost:34000/operaciones (si lo corrió con Docker) podremos encontrar la aplicación
