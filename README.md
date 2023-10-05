@@ -38,6 +38,8 @@ https://github.com/jloading/Taller6AREP-Service.git
 mvn package
 ```
 
+**Nota:** Si desea ejecutar la aplicación sin descargar las imágenes directamente de los repositorios (como se indica abajo), deberá crear las imágenes correspondientes a cada repositorio que clonó y la de MongoDB. Luego, simplemente siga los mismos pasos explicados abajo, pero reemplace las imágenes de los repositorios por las que creó. 
+
 ### Corriendo la aplicación
 
 ### * Usando Docker:
@@ -97,6 +99,7 @@ Luego de haber ajustado la configuración de seguridad de la instancia para perm
 * HTML: Es un lenguaje de marcado que estructura una página web y su contenido.
 * JavaScript: Lenguaje de programación que los desarrolladores utilizan para hacer paginas web dinamicas.
 * Docker: Es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software, proporcionando una capa adicional de abstracción y automatización de virtualización de aplicaciones en múltiples sistemas operativos.
+* AWS: Es una colección de servicios de computación en la nube pública (también llamados servicios web) que en conjunto forman una plataforma de computación en la nube, ofrecidas a través de Internet por Amazon.com.
 
 ## Autor
 
