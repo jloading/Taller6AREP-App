@@ -67,65 +67,25 @@ docker run -d -p 36003:4568 --name logger-service3 --network my_network jloading
 docker run -d -p 27017:27017 -v mongodb:/data/db -v mongodb_config:/data/configdb --name db --network my_network mongo:7.0.2 mongod
 ```
 
-
-## Corriendo las pruebas
-
-Al ingresar a la dirección http://localhost:4567/operaciones (si lo corrió con Java) o http://localhost:34000/operaciones (si lo corrió con Docker) podremos encontrar la aplicación
-
-<img width="630" alt="Captura de pantalla 2023-09-27 a la(s) 10 21 51 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/7034c793-a7a8-4463-aad2-5a3a55015ef3">
-
-Podemos ver que la aplicación resuelve las operaciones correctamente
-
-<img width="589" alt="Captura de pantalla 2023-09-27 a la(s) 10 23 35 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/c6a32d4b-69d3-4d1f-8b01-aaa2cb7e2df9">
-
-## Qué se hizo
-### Java
-Se creó la clase principal encargada de atender las peticiones que se hacen al servidor. Adicionalmente, implementa la lógica para efectuar las operaciones (seno, coseno, palíndromo, magnitud vector)
-
-<img width="834" alt="Captura de pantalla 2023-09-27 a la(s) 10 26 08 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/6ce31266-18c4-4de6-836d-575e9f2749c9">
-
-Se creó el cliente web encargado de proporcionar la interfaz para ingresar los valores (referirse a la clase para ver el código completo)
-
-<img width="1032" alt="Captura de pantalla 2023-09-27 a la(s) 10 27 03 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/24d1a984-b5cd-4755-a038-a93f94e25d87">
-
-
-### Docker
-Se crea una imagen en Docker con el comando
+Luego de ejecutar los comandos correctamente, se ingresa a la dirección
 
 ```
-docker build --tag taller5arep .
+http://localhost:36000
 ```
 
-<img width="707" alt="Captura de pantalla 2023-09-27 a la(s) 9 40 39 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/7765f1bd-5c14-42ec-97cb-abe0d5af1913">
+<img width="677" alt="Captura de pantalla 2023-10-05 a la(s) 2 26 33 a m" src="https://github.com/jloading/Taller6AREP-App/assets/65261708/a92835e8-3749-4ac5-b6a1-73b8df355455">
 
-Posteriormente se crea un contenedor con el comando
-```
-docker run -d -p 34000:6000 --name taller5container taller5arep
-```
-<img width="542" alt="Captura de pantalla 2023-09-27 a la(s) 9 42 13 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/25c6bd35-a7ed-42ac-89c5-1162b229f80e">
+### * A través de AWS:
 
-Se crea una referencia a la imagen con el nombre del repositorio de Docker Hub al que será subida
+Se ingresa a la siguiente dirección:
 
 ```
-docker tag taller5arep jloading9/taller5arep
+http://ec2-54-92-196-10.compute-1.amazonaws.com:36000/
 ```
 
-<img width="423" alt="Captura de pantalla 2023-09-27 a la(s) 9 54 26 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/fd2db7dd-29df-4dae-94de-16de05f7cd5e">
+Luego de haber ajustado la configuración de seguridad de la instancia para permitir el paso del tráfico a través de los puertos que requerimos, nos conectamos a la instancia mediante SSH y ejecutamos los comandos que se detallaron anteriormente para poner en marcha las instancias de los recursos que necesitamos utilizar. Una vez completado este proceso, fue posible acceder al servicio a través de la URL proporcionada.
 
-Se autentica en Docker con el comando
-
-```
-docker login
-```
-
-<img width="385" alt="Captura de pantalla 2023-09-27 a la(s) 9 56 22 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/885f0903-1bd2-4a59-86e8-a6f116fce61b">
-
-Se sube la imagen al repositorio con el comando
-```
-docker push jloading9/taller5arep:latest
-```
-<img width="638" alt="Captura de pantalla 2023-09-27 a la(s) 9 58 12 p m" src="https://github.com/jloading/Taller5AREP/assets/65261708/78ca5c37-59c7-4a86-b977-5249aadc26fa">
-
+<img width="617" alt="Captura de pantalla 2023-10-05 a la(s) 2 27 01 a m" src="https://github.com/jloading/Taller6AREP-App/assets/65261708/a1cf2562-0b86-4c25-b2d0-1b88ea726fcb">
 
 
 
