@@ -1,8 +1,8 @@
-# TALLER 5: MODULARIZACIÓN CON VIRTUALIZACIÓN E INTRODUCCIÓN A DOCKER
+# TALLER 6: PATRONES ARQUITECTURALES
 
-### Demo del proyecto (por si no corre): https://youtu.be/2vu6u16xoNI 
+### Demo del proyecto (por si no corre): https://youtu.be/5xfDRMQtiXI
 
-En este taller se profundizarán los conceptos de modulación por medio de virtualización usando Docker.
+En este taller se aprenderá a crear instancias EC2 en AWS, crear imágenes compatibles y desplegarlas en la misma.
 
 ### Prerrequisitos
 
@@ -10,6 +10,15 @@ En este taller se profundizarán los conceptos de modulación por medio de virtu
 - Maven: Es una herramienta que maneja el ciclo de vida del programa.
 - Git: Es un sistema de control de versiones distribuido (VCS).
 - Docker: Es un proyecto de código abierto que automatiza el despliegue de aplicaciones dentro de contenedores de software.
+
+### Qué se implementó
+- Round Robin: La aplicación consta de dos partes: un cliente web y un servicio REST. El cliente web incluye un campo y un botón, y cuando el usuario envía un mensaje, este se transmite al servicio REST. Luego, la pantalla se actualiza con la información devuelta por el servicio en formato JSON. El servicio REST recibe la cadena y emplea un algoritmo de equilibrio de carga Round Robin para distribuir el procesamiento del mensaje y la obtención de la respuesta entre las tres instancias del servicio.
+
+- MongoDB: El servicio MongoDB es una instancia de MongoDB que se ejecuta en un contenedor de Docker dentro de una máquina virtual de EC2. En este entorno, se almacenan los mensajes enviados por el usuario.
+  
+- Se implementó la siguiente arquitectura para la aplicación:
+<img width="671" alt="Captura de pantalla 2023-10-05 a la(s) 2 06 24 a m" src="https://github.com/jloading/Taller6AREP-App/assets/65261708/43786346-30bb-47bd-bc43-3c2f2a0ee951">
+
 
 ### Instalación
 
